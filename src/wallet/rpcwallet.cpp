@@ -10,6 +10,7 @@
 #include <httpserver.h>
 #include <validation.h>
 #include <key_io.h>
+#include <limits>
 #include <net.h>
 #include <outputtype.h>
 #include <policy/feerate.h>
@@ -3357,7 +3358,7 @@ static UniValue listunspent(const JSONRPCRequest& request)
         nMinDepth = request.params[0].get_int();
     }
 
-    int nMaxDepth = 9999999;
+    int nMaxDepth = std::numeric_limits<int>::max();
     if (!request.params[1].isNull()) {
         RPCTypeCheckArgument(request.params[1], UniValue::VNUM);
         nMaxDepth = request.params[1].get_int();
